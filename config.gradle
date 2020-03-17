@@ -112,6 +112,7 @@ ext {
 
             //test
             "junit"                    : "junit:junit:4.12",
+            'androidJunit'             :'androidx.test.ext:junit:1.1.1',
             "androidJUnitRunner"       : "android.support.test.runner.AndroidJUnitRunner",
             "runner"                   : "com.android.support.test:runner:1.0.2",
             "espresso-core"            : "com.android.support.test.espresso:espresso-core:${version["espressoSdkVersion"]}",
