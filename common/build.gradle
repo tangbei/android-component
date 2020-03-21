@@ -27,4 +27,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(path: ':network')
+
+    api rootProject.ext.dependencies['SmartRefreshLayout']
 }
