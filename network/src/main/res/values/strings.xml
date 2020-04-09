@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="network_environment_setting">开发者设置</string>
+    <string name="module_network_str_setting_network">设置网络环境</string>
+    <string name="module_network_str_setting_network_hint">请您选择您需要使用的网络环境，选择完后会重启APP生效</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/environmentArray"
+        android:entryValues="@array/environmentValues"
+        android:icon="@drawable/module_network_icon_controls"
+        android:key="network_environment_type"
+        android:summary="@string/module_network_str_setting_network_hint"
+        android:title="@string/module_network_str_setting_network" />
+</PreferenceScreen>

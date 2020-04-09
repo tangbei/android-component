@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--配置文件->在9.0上可以正常访问 http 请求-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

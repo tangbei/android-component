@@ -1,5 +1,9 @@
 package com.tang.base.activity;
 
+import android.os.Handler;
+import android.os.Message;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 

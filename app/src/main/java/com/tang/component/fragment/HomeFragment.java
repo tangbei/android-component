@@ -1,5 +1,6 @@
 package com.tang.component.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,14 @@ import androidx.fragment.app.Fragment;
 
 import com.tang.component.R;
 import com.tang.component.databinding.FragmentHomeBinding;
+import com.tang.component.network.base.CommonNetWorkApi;
+import com.tang.component.network.beans.BaseResponse;
+import com.tang.component.network.environment.EnvironmentActivity;
+import com.tang.component.network.observer.BaseObserver;
+import com.tang.component.service.ApiService;
+import com.tang.component.service.TestBean;
+
+import java.util.List;
 
 /**
  * 描述:
@@ -38,6 +47,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        homeBinding.tvHome.setText("我是 home");
+        homeBinding.btnRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonNetWorkApi.getService(ApiService.class).getIndex()
+                        .compose(CommonNetWorkApi.getTransformer(
+                                new BaseObserver<BaseResponse<List<TestBean>>>()
+                        ));
+            }
+        });
+
+        homeBinding.btnSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeFragment.this.getActivity(), EnvironmentActivity.class));
+            }
+        });
     }
 }
