@@ -11,7 +11,7 @@ ext {
             targetSdkVersion        : 29,
             versionCode             : 1000001,
             versionName             : "1.0.0.1",
-            minifyEnabled           : false,//是否混淆
+            minifyEnabled           : true,//是否混淆
             multiDexEnabled         : true,
             zipAlignEnabled         : true,//优化android和应用程序间的交互
 
@@ -20,9 +20,12 @@ ext {
 
 
     //编译的module
-    module = [
-            module_home             : true,
-            module_test             : true
+    module_appid = [
+            module_home             : "com.tang.component.home",
+            module_find             : "com.tang.component.find",
+            module_live             : "com.tang.component.live",
+            module_news             : "com.tang.component.news",
+            module_mine             : "com.tang.component.mine",
     ]
 
     version = [
@@ -45,6 +48,7 @@ ext {
             "material_design"          : "com.google.android.material:material:${version['appcompat']}",
             "core"                     : "androidx.core:core:${version['appcompat']}",
             "preference"               : "androidx.preference:preference:${version['appcompat']}",
+            "lifecycle"                : "androidx.lifecycle:lifecycle-extensions:2.2.0",
 
             //网络请求库
             "retrofit"                 : "com.squareup.retrofit2:retrofit:${version['retrofitSdkVersion']}",

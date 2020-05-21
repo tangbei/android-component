@@ -1,0 +1,17 @@
+apply from: "../module_build.gradle"
+
+android {
+    defaultConfig {
+        //如果是独立module,则使用此包名
+        if (isBuildModule.toBoolean()){
+            applicationId rootProject.ext.module_appid['module_news']
+        }
+    }
+
+    //统一资源前缀，规范资源使用
+    resourcePrefix "module_news_"
+}
+
+dependencies {
+
+}

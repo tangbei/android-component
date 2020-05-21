@@ -8,7 +8,9 @@
  */
 package com.tang.component.network.observer;
 
+import com.tang.base.model.MvvmBaseModel;
 import com.tang.base.utils.LogUtil;
+import com.tang.component.network.errorhandle.ExceptionHandle;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -21,19 +23,39 @@ import io.reactivex.disposables.Disposable;
 public class BaseObserver<T> implements Observer<T> {
 
     private static final String TAG = "BaseObserver";
+    private MvvmBaseModel baseModel;
+
+    public BaseObserver(MvvmBaseModel baseModel) {
+        this.baseModel = baseModel;
+    }
 
     @Override
     public void onSubscribe(Disposable d) {
+        if (null != baseModel){
+            baseModel.addDisposable(d);
+        }
         LogUtil.d(TAG,"onSubscribe回调");
     }
 
     @Override
     public void onNext(T t) {
+        if (null != baseModel){
+            baseModel.onSuccess(t);
+        }
         LogUtil.d(TAG,"onNext回调");
     }
 
     @Override
     public void onError(Throwable e) {
+        if (e instanceof ExceptionHandle.ResponeThrowable){
+            if (null != baseModel){
+                baseModel.onFailure(e);
+            }
+        }else {
+            if (null != baseModel){
+                baseModel.onFailure(new ExceptionHandle.ResponeThrowable(e,ExceptionHandle.ERROR.UNKNOWN));
+            }
+        }
         LogUtil.d(TAG,"onError回调："+e.getMessage());
     }
 

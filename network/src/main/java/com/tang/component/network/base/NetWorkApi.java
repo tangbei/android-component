@@ -40,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public abstract class NetWorkApi implements IEnvironment {
 
     private static INetWorkConfig netWorkConfig;
-    private Map<String,Retrofit> retrofitMap = new HashMap<>();
+    private static Map<String,Retrofit> retrofitMap = new HashMap<>();
     private OkHttpClient mOkHttpClient;
     private String BaseURL = "";
     /**

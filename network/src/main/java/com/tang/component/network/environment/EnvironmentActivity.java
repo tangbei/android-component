@@ -48,7 +48,9 @@ public class EnvironmentActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.environment_preference);
-            findPreference(NETWORK_ENVIRONMENT_PREF_KEY).setOnPreferenceChangeListener(this);
+            if (null != findPreference(NETWORK_ENVIRONMENT_PREF_KEY)){
+                findPreference(NETWORK_ENVIRONMENT_PREF_KEY).setOnPreferenceChangeListener(this);
+            }
         }
 
         @Override
