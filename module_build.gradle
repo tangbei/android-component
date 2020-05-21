@@ -32,6 +32,28 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //资源配置
+    sourceSets {
+        main {
+            if (isBuildModule.toBoolean()){
+                //独立运行，则使用此manifest
+                manifest.srcFile 'src/main/manitest/AndroidManifest.xml'
+            }else {
+                //合并运行
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                resources {
+                    //合并运行时，排除manitest下的所有调试文件
+                    exclude 'src/main/manitest/*'
+                }
+            }
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled rootProject.ext.android['minifyEnabled']

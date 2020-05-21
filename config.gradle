@@ -11,11 +11,11 @@ ext {
             targetSdkVersion        : 29,
             versionCode             : 1000001,
             versionName             : "1.0.0.1",
-            minifyEnabled           : true,//是否混淆
-            multiDexEnabled         : true,
+            minifyEnabled           : false,//是否混淆
             zipAlignEnabled         : true,//优化android和应用程序间的交互
 
-            dataBinding            : true,//启动dataBinding
+            multiDexEnabled         : true,
+            dataBinding             : true,//启动dataBinding
     ]
 
 

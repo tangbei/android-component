@@ -11,7 +11,8 @@ android {
         versionCode rootProject.ext.android['versionCode']
         versionName rootProject.ext.android['versionName']
 
-        multiDexEnabled true //65535问题
+        //65535问题
+        multiDexEnabled rootProject.ext.android['multiDexEnabled']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -45,11 +46,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(path: ':home')
-    implementation project(path: ':live')
-    implementation project(path: ':find')
-    implementation project(path: ':news')
-    implementation project(path: ':mine')
+    if (isBuildModule.toBoolean()){
+        implementation project(path: ':common')
+    }else {
+        implementation project(path: ':home')
+        implementation project(path: ':live')
+        implementation project(path: ':find')
+        implementation project(path: ':news')
+        implementation project(path: ':mine')
+    }
 
     implementation rootProject.ext.dependencies['multidex']
 
