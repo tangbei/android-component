@@ -16,17 +16,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
-
         //阿里路由框架集成
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -49,6 +49,7 @@ dependencies {
     if (isBuildModule.toBoolean()){
         implementation project(path: ':common')
     }else {
+        implementation project(path: ':main')
         implementation project(path: ':home')
         implementation project(path: ':live')
         implementation project(path: ':find')

@@ -26,9 +26,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(path: ':network')
+    implementation rootProject.ext.dependencies['appcompat']
+    api project(path: ':base')
 
     api rootProject.ext.dependencies['SmartRefreshLayout']
 
-    api rootProject.ext.dependencies['arouter']
 }

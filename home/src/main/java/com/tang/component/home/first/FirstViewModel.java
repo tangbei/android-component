@@ -1,10 +1,14 @@
 package com.tang.component.home.first;
 
-import com.tang.base.viewmodel.MvvmBaseViewModel;
-import com.tang.component.home.entity.TestBean;
-import com.tang.component.network.beans.BaseResponse;
+import android.app.Application;
 
-import java.util.List;
+import androidx.annotation.NonNull;
+
+import com.tang.base.binding.command.BindingAction;
+import com.tang.base.binding.command.BindingCommand;
+import com.tang.base.model.BaseModel;
+import com.tang.base.utils.LogUtil;
+import com.tang.base.viewmodel.BaseViewModel;
 
 /**
  * Author: tang
@@ -12,10 +16,22 @@ import java.util.List;
  * Date: 2020/4/30
  * Description: java类作用描述
  */
-public class FirstViewModel extends MvvmBaseViewModel<FirstModel, BaseResponse<List<TestBean>>> {
+public class FirstViewModel extends BaseViewModel<FirstModel> {
+
+    public FirstViewModel(@NonNull Application application) {
+        super(application,new FirstModel(application));
+    }
 
     @Override
-    protected FirstViewModel init() {
-        return null;
+    public void onLoadFinish(BaseModel model, Object data) {
+        LogUtil.d("我是first返回结果");
     }
+
+    public BindingCommand onClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            model.getCacheDataAndLoad();
+        }
+    });
+
 }

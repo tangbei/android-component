@@ -8,11 +8,10 @@
  */
 package com.tang.component.network.interceptor;
 
-import com.tang.base.utils.LogUtil;
+
+import android.util.Log;
 
 import java.io.IOException;
-import java.util.logging.Logger;
-
 import okhttp3.Interceptor;
 import okhttp3.Response;
 
@@ -30,7 +29,7 @@ public class ResponseInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         long requestTime = System.currentTimeMillis();
         //打印请求结果的时间
-        LogUtil.d(TAG,"requestTime-->"+requestTime);
+        Log.d(TAG,"requestTime-->"+requestTime);
         return chain.proceed(chain.request());
     }
 }

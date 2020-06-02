@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:binding="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="homeViewModel"
+            type="com.tang.component.home.base.HomeViewModel" />
+    </data>
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,16 +21,19 @@
             android:text="切换网络环境"/>
 
         <Button
-            android:id="@+id/btn_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            binding:isThrottleFirst="@{Boolean.TRUE}"
+            binding:onClickCommand="@{homeViewModel.onScreenClickCommand}"
+            android:text="跳转"/>
 
         <Button
-            android:id="@+id/btn_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"/>
+            android:layout_gravity="right"
+            binding:onClickDelayedCommand="@{homeViewModel.onClickCommand}"
+            android:text="网络请求"/>
 
     </FrameLayout>
 

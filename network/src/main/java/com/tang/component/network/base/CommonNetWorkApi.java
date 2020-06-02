@@ -8,9 +8,8 @@
  */
 package com.tang.component.network.base;
 
-import com.tang.component.network.beans.BaseResponse;
+import com.tang.component.network.entity.BaseResponse;
 import com.tang.component.network.errorhandle.ExceptionHandle;
-
 import io.reactivex.ObservableTransformer;
 import io.reactivex.Observer;
 import io.reactivex.functions.Function;

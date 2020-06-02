@@ -27,7 +27,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(path: ':base')
+//    api project(path: ':base')
+
 
     api rootProject.ext.dependencies['retrofit']
     implementation rootProject.ext.dependencies['okhttp3-logging']

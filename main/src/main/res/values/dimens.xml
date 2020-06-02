@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="module_main_sp_10">10sp</dimen>
+    <dimen name="module_main_sp_11">11sp</dimen>
+    <dimen name="module_main_sp_12">12sp</dimen>
+    <dimen name="module_main_sp_13">13sp</dimen>
+    <dimen name="module_main_sp_14">14sp</dimen>
+    <dimen name="module_main_sp_15">15sp</dimen>
+    <dimen name="module_main_sp_16">16sp</dimen>
+</resources>

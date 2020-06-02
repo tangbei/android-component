@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.tang.common.aroute.ARoutePathApi;
-import com.tang.component.home.ui.HomeFragment;
+import com.tang.component.home.base.HomeFragment;
 
 /**
  * Author: tang

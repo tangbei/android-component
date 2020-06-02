@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--activity主窗口与软键盘的交互模式，可以用来避免输入法面板遮挡问题，Android1.5后的一个新特性。-->
+        <item name="android:windowSoftInputMode">adjustPan</item>
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- 导航栏颜色 -->
+        <item name="colorPrimary">@android:color/transparent</item>
+        <!-- 状态栏颜色 5.0之后有效 -->
+        <item name="colorPrimaryDark">@android:color/white</item>
+        <!-- 控件选中后的颜色 -->
+        <item name="colorAccent">@color/red</item>
+        <!-- actionBar的高度 -->
+        <!--<item name="actionBarSize">@dimen/actionBarSize</item>-->
+        <!-- 自定义菜单的字体颜色 -->
+        <item name="actionMenuTextColor">@color/red</item>
+        <!-- 页面背景色 -->
+        <item name="android:windowBackground">@color/normal_background</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!-- toolbar样式 -->
+        <item name="toolbarStyle">@style/BaseToolbar</item>
+    </style>
+
+    <style name="BaseToolbar" parent="Base.Widget.AppCompat.Toolbar">
+        <!-- 设置该属性解决空白部分-->
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>

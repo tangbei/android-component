@@ -1,2 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tang.base" />
+    package="com.tang.base" >
+
+    <application>
+
+        <!--自定义contentProvider,app启动时会加载，允许在调用者的进程里实例化provider-->
+        <provider
+            android:authorities="${applicationId}.screen-adapt-provider"
+            android:name=".screenadapt.provider.ScreenAdaptProvider"
+            android:exported="false"
+            android:multiprocess="true" />
+    </application>
+</manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr format="reference" name="onClickCommand"/>
+    <attr format="reference" name="onClickDelayedCommand"/>
+    <attr format="boolean" name="isThrottleFirst"/>
+
+    <declare-styleable name="View">
+        <attr name="onClickCommand"/>
+        <attr name="onClickDelayedCommand"/>
+        <attr name="isThrottleFirst"/>
+    </declare-styleable>
+</resources>

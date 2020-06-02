@@ -3,6 +3,7 @@ package com.tang.common.aroute;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -37,5 +38,12 @@ public class RouterManager {
 
     public Fragment getFragment(String path){
         return (Fragment) ARouter.getInstance().build(path).navigation();
+    }
+
+    public void startActivity(@NonNull String path){
+        ARouter.getInstance()
+                .build(path)
+                .withTransition(R.anim.push_right_in, R.anim.push_left_out)
+                .navigation();
     }
 }

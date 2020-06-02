@@ -8,9 +8,17 @@ package com.tang.common.aroute;
  */
 public class RouterPathApi {
 
+    public static class Main {
+        private static final String MAIN_ROUTER = "/main/";
+        public static final String MAIN_BASE = MAIN_ROUTER + "main_base";
+    }
+
     public static class Home {
         private static final String HOME_ROUTER = "/home/";
+        public static final String HOME_BASE = HOME_ROUTER + "home_base";
         public static final String HOME_FIRST = HOME_ROUTER + "home_first";
+        public static final String HOME_SECOND = HOME_ROUTER + "home_second";
+        public static final String HOME_SCREEN_ADAPT = HOME_ROUTER + "home_screen_adapt";
     }
 
     public static class Find {

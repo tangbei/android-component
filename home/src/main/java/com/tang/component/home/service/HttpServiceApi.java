@@ -1,7 +1,7 @@
 package com.tang.component.home.service;
 
 import com.tang.component.home.entity.TestBean;
-import com.tang.component.network.beans.BaseResponse;
+import com.tang.component.network.entity.BaseResponse;
 
 import java.util.List;
 

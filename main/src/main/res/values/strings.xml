@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_main_app_name">main</string>
+
+    <string name="module_main_tab_home">home</string>
+    <string name="module_main_tab_news">news</string>
+    <string name="module_main_tab_find">find</string>
+    <string name="module_main_tab_live">live</string>
+    <string name="module_main_tab_mine">mine</string>
+</resources>

@@ -21,6 +21,7 @@ ext {
 
     //编译的module
     module_appid = [
+            module_main             : "com.tang.component.main",
             module_home             : "com.tang.component.home",
             module_find             : "com.tang.component.find",
             module_live             : "com.tang.component.live",
@@ -35,7 +36,6 @@ ext {
             rxlifecycleSdkVersion   : "1.0",
             rxlifecycle2SdkVersion  : "2.2.2",
             espressoSdkVersion      : "3.2.0",
-            canarySdkVersion        : "2.0"
     ]
 
     dependencies = [
@@ -63,6 +63,7 @@ ext {
             //rx系列依赖库
             "rxandroid2"               : "io.reactivex.rxjava2:rxandroid:2.1.1",
             "rxjava2"                  : "io.reactivex.rxjava2:rxjava:2.2.19",
+            "rxbinding2"               : "com.jakewharton.rxbinding2:rxbinding:2.2.0",
             "rxlifecycle2"             : "com.trello.rxlifecycle2:rxlifecycle:${version["rxlifecycle2SdkVersion"]}",
             "rxlifecycle2-android"     : "com.trello.rxlifecycle2:rxlifecycle-android:${version["rxlifecycle2SdkVersion"]}",
             "rxlifecycle2-components"  : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycle2SdkVersion"]}",
@@ -102,6 +103,7 @@ ext {
             "lifecyclemodel"           : "me.jessyan:lifecyclemodel:1.0.1",
             "tinypinyin"               : "com.github.promeg:tinypinyin:1.0.0",//汉字转拼音库
             "walle"                    : "com.meituan.android.walle:library:1.1.6",//walle分渠道
+            "mmkv"                     : "com.tencent:mmkv:1.1.1",//替代sp的mmkv
 
             //tinker热修复
             "tinker-android-anno"      : "com.tencent.tinker:tinker-android-anno:1.9.14",
@@ -119,7 +121,7 @@ ext {
             "espresso-intents"         : "com.android.support.test.espresso:espresso-intents:${version["espressoSdkVersion"]}",
             "mockito-core"             : "org.mockito:mockito-core:1.+",
             "timber"                   : "com.jakewharton.timber:timber:4.7.1",
-            "leakcanary"               : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
+            "leakcanary"               : "com.squareup.leakcanary:leakcanary-android:2.3",
             "umeng-analytics"          : "com.umeng.analytics:analytics:6.0.1"
     ]
 }
