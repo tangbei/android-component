@@ -27,6 +27,7 @@ ext {
             module_live             : "com.tang.component.live",
             module_news             : "com.tang.component.news",
             module_mine             : "com.tang.component.mine",
+            module_webview          : "com.tang.webview",
     ]
 
     version = [

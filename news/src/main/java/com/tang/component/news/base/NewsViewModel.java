@@ -1,11 +1,23 @@
 package com.tang.component.news.base;
 
 import android.app.Application;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
 
 import androidx.annotation.NonNull;
 
+import com.tang.base.binding.command.BindingAction;
+import com.tang.base.binding.command.BindingCommand;
 import com.tang.base.model.BaseModel;
+import com.tang.base.utils.LogUtil;
 import com.tang.base.viewmodel.BaseViewModel;
+import com.tang.common.aroute.RouterPathApi;
+
+import okhttp3.Route;
 
 /**
  * Author: tang
@@ -15,48 +27,20 @@ import com.tang.base.viewmodel.BaseViewModel;
  */
 public class NewsViewModel extends BaseViewModel<NewsModel> {
 
+
     public NewsViewModel(@NonNull Application application) {
-        super(application);
+        super(application,new NewsModel());
     }
 
-    @Override
-    public void onLoadFinish(BaseModel model, Object data) {
-        super.onLoadFinish(model, data);
-    }
+    public BindingCommand onAIDLCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            LogUtil.d("我是aidl点击");
 
-    @Override
-    public void onLoadFail(BaseModel model, String prompt) {
-        super.onLoadFail(model, prompt);
-    }
-
-    @Override
-    public void onCreate() {
-        model = new NewsModel();
-        model.register(this);
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onResume() {
-
-    }
-
-    @Override
-    public void onPause() {
-
-    }
-
-    @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
+            Bundle bundle = new Bundle();
+            bundle.putString("web_url","https://xw.qq.com/?f=qqcom");
+            startActivity(RouterPathApi.WebView.WEB_VIEW_BASE,bundle);
+//            mLiveData.setValue(0);
+        }
+    });
 }

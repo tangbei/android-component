@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tang.webview" >
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application>
+
+        <!--启用硬件加速与新进程-->
+        <activity android:name=".WebViewActivity"
+            android:hardwareAccelerated="true"
+            android:process=":webview"/>
+
+        <service android:name=".server.AIDLService">
+            <intent-filter>
+                <action android:name="com.tang.webview.action"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

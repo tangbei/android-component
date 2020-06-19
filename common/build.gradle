@@ -29,6 +29,8 @@ dependencies {
     implementation rootProject.ext.dependencies['appcompat']
     api project(path: ':base')
 
+//    api project(path: ':webview')
+
     api rootProject.ext.dependencies['SmartRefreshLayout']
 
 }

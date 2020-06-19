@@ -55,6 +55,7 @@ dependencies {
         implementation project(path: ':find')
         implementation project(path: ':news')
         implementation project(path: ':mine')
+        implementation project(path: ':webview')
     }
 
     implementation rootProject.ext.dependencies['multidex']

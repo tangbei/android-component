@@ -40,4 +40,9 @@ public class RouterPathApi {
         private static final String MINE_ROUTER = "/mine/";
         public static final String MINE_FIRST = MINE_ROUTER + "mine_first";
     }
+
+    public static class WebView {
+        private static final String WEBVIEW_ROUTER = "/webview/";
+        public static final String WEB_VIEW_BASE = WEBVIEW_ROUTER + "webview_base";
+    }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="module_webview_ssl_error">SSL证书错误。</string>
+    <string name="module_webview_ssl_error_not_trust">SSL证书颁发机构未受信任。</string>
+    <string name="module_webview_ssl_error_expired">SSL证书已过期。</string>
+    <string name="module_webview_ssl_error_mismatch">SSL安全证书域名与网站网址不一致。</string>
+    <string name="module_webview_ssl_error_not_valid">SSL证书还未生效。</string>
+    <string name="module_webview_ssl_error_continue_open">是否继续打开该网页?</string>
+
+    <string name="module_webview_cancel">取消</string>
+    <string name="module_webview_continue_open">继续</string>
+</resources>
