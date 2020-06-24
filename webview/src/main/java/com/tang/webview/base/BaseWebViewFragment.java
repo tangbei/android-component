@@ -13,11 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.tang.base.utils.LogUtil;
 import com.tang.webview.R;
 import com.tang.webview.WebContent;
+import com.tang.webview.action.CommandDispatcher;
+import com.tang.webview.interfaces.Action;
 import com.tang.webview.interfaces.BaseWebViewCallBack;
 import com.tang.webview.interfaces.WebViewLifeCycle;
 import com.tang.webview.setting.DefaultWebViewLifeCycleImpl;
+import com.tang.webview.setting.MainLooper;
 import com.tang.webview.view.BaseWebView;
 
 /**
@@ -76,11 +80,24 @@ public abstract class BaseWebViewFragment extends Fragment implements BaseWebVie
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mLifeCycle = new DefaultWebViewLifeCycleImpl(mWebView);
+        //注册监听
         mWebView.registerWebViewCallback(this);
-        loadUrl();
+        LogUtil.w("baseWebView:","初始化webwiew进程为："+ Thread.currentThread().getId());
+        CommandDispatcher.getInstance().initAidlConnect(getContext(), new Action() {
+            @Override
+            public void call(Object o) {
+                MainLooper.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadUrl();
+                    }
+                });
+            }
+        });
     }
 
     protected void loadUrl(){
+        LogUtil.w("baseWebView:","打开页面时的webwiew进程为："+ Thread.currentThread().getId());
         mWebView.loadUrl(web_url);
     }
 
@@ -134,6 +151,15 @@ public abstract class BaseWebViewFragment extends Fragment implements BaseWebVie
     @Override
     public void onError() {
 
+    }
+
+    @Override
+    public void exec(Context context, WebView webView, int level, String cmd, String params) {
+        CommandDispatcher.getInstance().exec(context,webView,level,cmd,params,getDispatcherCallback());
+    }
+
+    private CommandDispatcher.DispatcherCallback getDispatcherCallback(){
+        return null;
     }
 
     /**

@@ -39,6 +39,7 @@ public class ComponentApplication extends Application {
         ARouter.openDebug();
         ARouter.init(this);
 
+        ActivityRouterManager.getInstance().init(this);
         //初始化网络请求框架
         CommonNetWorkApi.init(new NetWorkConfigImpl(this));
     }

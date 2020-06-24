@@ -24,4 +24,47 @@ public class WebContent {
      * 自定义交互，进入{@link com.tang.webview.base.InterfaceWebViewFragment}
      */
     public static final int TYPE_INTERFACE = 1;
+
+    /**
+     * 自定义交互，指令存在ui
+     */
+    public static final int TYPE_UI = 2;
+
+    /**
+     * 分发完成
+     */
+    public static final int SUCCESS = 0;
+    /**
+     * 分发失败
+     */
+    public static final int FAILED = 1;
+    /**
+     * 继续分发command
+     */
+    public static final int CONTINUE = 2;
+
+    /**
+     * web与native交互的callback
+     */
+    public static final String WEB2NATIVE_CALLBACK = "callback";
+    /**
+     * native与web交互的callback
+     */
+    public static final String NATIVE2WEB_CALLBACK = "callback_name";
+
+    public static class ErrorCode {
+        public static final int NO_METHOD = -1000;
+        public static final int NO_AUTH = -1001;
+        public static final int NO_LOGIN = -1002;
+        public static final int ERROR_PARAM = -1003;
+        public static final int ERROR_EXCEPTION = -1004;
+    }
+
+    public static class ErrorMessage {
+        public static final String NO_METHOD = "方法找不到";
+        public static final String NO_AUTH = "方法权限不够";
+        public static final String NO_LOGIN = "尚未登录";
+        public static final String ERROR_PARAM = "参数错误";
+        public static final String ERROR_EXCEPTION = "未知异常";
+    }
 }

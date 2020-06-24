@@ -14,8 +14,9 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.tang.common.utils.CommonUtil;
 /**
  * Author: tang
  * E-mail: itangbei@sina.com
@@ -102,7 +103,7 @@ public class WebProgressBar extends FrameLayout implements ProgressBarInterface 
         mPaint.setStrokeCap(Paint.Cap.SQUARE);
 
         mTargetWidth = context.getResources().getDisplayMetrics().widthPixels;
-        WEB_PROGRESS_DEFAULT_HEIGHT = CommonUtil.dip2px(context, 2.5f);
+        WEB_PROGRESS_DEFAULT_HEIGHT = dip2px(context, 2.5f);
 
     }
 
@@ -297,6 +298,16 @@ public class WebProgressBar extends FrameLayout implements ProgressBarInterface 
     @Override
     public void setProgress(int newProgress) {
         setProgress(Float.valueOf(newProgress));
+    }
 
+    /**
+     * dp 转 px
+     * @param context
+     * @param dpValue
+     * @return pxValue
+     */
+    public int dip2px(@NonNull Context context, float dpValue){
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 }

@@ -68,9 +68,9 @@ public class LogUtil {
             tag =split[split.length-1].split("\\$")[0];
         }
         if (TextUtils.isEmpty(msg)){
-            Log.d(TAG.concat(tag),"该log输出 为空 哦");
+            Log.d(tag,"该log输出 为空 哦");
         }else {
-            Log.d(TAG.concat(tag),getMsg(msg));
+            Log.d(tag,getMsg(msg));
         }
     }
 
@@ -106,9 +106,9 @@ public class LogUtil {
             tag =split[split.length-1].split("\\$")[0];
         }
         if (TextUtils.isEmpty(msg)){
-            Log.e(TAG.concat(tag),"该log输出 为空 哦");
+            Log.e(tag,"该log输出 为空 哦");
         }else {
-            Log.e(TAG.concat(tag),getMsg(msg));
+            Log.e(tag,getMsg(msg));
         }
     }
 
@@ -144,9 +144,9 @@ public class LogUtil {
             tag =split[split.length-1].split("\\$")[0];
         }
         if (TextUtils.isEmpty(msg)){
-            Log.i(TAG.concat(tag),"该log输出 为空 哦");
+            Log.i(tag,"该log输出 为空 哦");
         }else {
-            Log.i(TAG.concat(tag),getMsg(msg));
+            Log.i(tag,getMsg(msg));
         }
     }
 
@@ -182,9 +182,9 @@ public class LogUtil {
             tag =split[split.length-1].split("\\$")[0];
         }
         if (TextUtils.isEmpty(msg)){
-            Log.w(TAG.concat(tag),"该log输出 为空 哦");
+            Log.w(tag,"该log输出 为空 哦");
         }else {
-            Log.w(TAG.concat(tag),getMsg(msg));
+            Log.w(tag,getMsg(msg));
         }
     }
 

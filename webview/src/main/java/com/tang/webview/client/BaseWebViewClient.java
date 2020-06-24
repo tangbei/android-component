@@ -66,6 +66,10 @@ public class BaseWebViewClient extends WebViewClient {
         this.mHeaders = headers;
     }
 
+    public boolean isReady() {
+        return isReady;
+    }
+
     /**
      * url重定向会执行此方法以及点击页面某些链接也会执行此方法
      * @param view
@@ -78,7 +82,7 @@ public class BaseWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         LogUtil.d(TAG,"shouldOverrideUrlLoading url:"+request.getUrl());
         //当前链接的重定向是否通过点击行为来判断
-        if (ismTouchByUser()){
+        if (!ismTouchByUser()){
             return super.shouldOverrideUrlLoading(view, request);
         }
         //如果重定向链接和当前链接一样，则表示刷新
@@ -100,7 +104,7 @@ public class BaseWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         LogUtil.d(TAG,"shouldOverrideUrlLoading url:"+url);
         //当前链接的重定向是否通过点击行为来判断
-        if (ismTouchByUser()){
+        if (!ismTouchByUser()){
             return super.shouldOverrideUrlLoading(view, url);
         }
         //如果重定向链接和当前链接一样，则表示刷新
@@ -149,10 +153,11 @@ public class BaseWebViewClient extends WebViewClient {
         return null;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-        return super.shouldInterceptRequest(view, request);
+        return shouldInterceptRequest(view, request.getUrl().toString());
     }
 
     @Override
@@ -165,7 +170,7 @@ public class BaseWebViewClient extends WebViewClient {
     }
 
     @Override
-    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+    public void onReceivedSslError(WebView view, final SslErrorHandler handler, SslError error) {
         String channel = "";
         if (!TextUtils.isEmpty(channel) && channel.equals("play.google.com")) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(mWebView.getContext());

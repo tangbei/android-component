@@ -62,10 +62,12 @@ public abstract class BaseActivity<V extends ViewDataBinding,VM extends BaseView
             //关联viewModel
             dataBinding.setVariable(getBindingVariable(),viewModel);
         }
-        dataBinding.executePendingBindings();
-        //让viewModel拥有view的生命周期
-        getLifecycle().addObserver(viewModel);
-        viewModel.injectLifecycleProvider(this);
+        if (null != dataBinding){
+            dataBinding.executePendingBindings();
+            //让viewModel拥有view的生命周期
+            getLifecycle().addObserver(viewModel);
+            viewModel.injectLifecycleProvider(this);
+        }
     }
 
     @Override

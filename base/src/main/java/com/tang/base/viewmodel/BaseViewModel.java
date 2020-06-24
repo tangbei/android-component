@@ -8,6 +8,7 @@
 package com.tang.base.viewmodel;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -106,6 +107,15 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     @Override
     public void startActivity(@NonNull String path, Bundle bundle) {
         ActivityRouterManager.getInstance().startActivity(path,bundle);
+    }
+
+    @Override
+    public void startActivity(Class<?> clazz, Bundle bundle) {
+        Intent intent = new Intent(this.getApplication().getApplicationContext(),clazz);
+        if (bundle != null){
+            intent.putExtras(bundle);
+        }
+        ActivityRouterManager.getInstance().startActivity(intent);
     }
 
     @Override

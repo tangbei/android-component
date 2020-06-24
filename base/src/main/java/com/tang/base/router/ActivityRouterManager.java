@@ -1,6 +1,7 @@
 package com.tang.base.router;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tang.base.R;
+import com.tang.base.activity.BaseActivity;
 import com.tang.base.utils.LogUtil;
 
 import java.lang.ref.WeakReference;
@@ -23,9 +25,10 @@ import java.util.Stack;
 public class ActivityRouterManager {
 
     private static volatile ActivityRouterManager instance;
-    private static final int AnimationType_BOTTOM = 0;
-    private static final int AnimationType_LEFT = 1;
+    public static final int AnimationType_BOTTOM = 0;
+    public static final int AnimationType_LEFT = 1;
     private static final int AnimationType_RIGHT = 2;
+    private Application mApplication;
     /**
      * 管理所有存活的activity
      */
@@ -46,6 +49,11 @@ public class ActivityRouterManager {
         return instance;
     }
 
+    public ActivityRouterManager init(Application application){
+        this.mApplication = application;
+        return instance;
+    }
+
     /**
      * 让在栈顶的activity打开指定的activity
      * @param path
@@ -61,6 +69,20 @@ public class ActivityRouterManager {
      */
     public void startActivity(@NonNull String path, Bundle bundle){
         startActivity(path,bundle,AnimationType_LEFT);
+    }
+
+
+    public void startActivity(Intent intent){
+//        int enterAnim = animation == AnimationType_LEFT ? R.anim.push_right_in : (animation == AnimationType_BOTTOM ? R.anim.push_bottom_in : 0);
+//        int exitAnim = animation == AnimationType_LEFT ? R.anim.push_left_out : (animation == AnimationType_BOTTOM ? R.anim.push_top_out : 0);
+        if (null == getTopActivity()){
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mApplication.startActivity(intent);
+//            ((Activity)mApplication.getApplicationContext()).overridePendingTransition(enterAnim,exitAnim);
+            return;
+        }
+        getTopActivity().startActivity(intent);
+//        ((Activity)mApplication.getApplicationContext()).overridePendingTransition(enterAnim,exitAnim);
     }
 
     /**

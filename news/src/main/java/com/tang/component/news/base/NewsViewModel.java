@@ -1,23 +1,14 @@
 package com.tang.component.news.base;
 
 import android.app.Application;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 
 import androidx.annotation.NonNull;
-
 import com.tang.base.binding.command.BindingAction;
 import com.tang.base.binding.command.BindingCommand;
-import com.tang.base.model.BaseModel;
 import com.tang.base.utils.LogUtil;
 import com.tang.base.viewmodel.BaseViewModel;
 import com.tang.common.aroute.RouterPathApi;
-
-import okhttp3.Route;
 
 /**
  * Author: tang
@@ -38,9 +29,8 @@ public class NewsViewModel extends BaseViewModel<NewsModel> {
             LogUtil.d("我是aidl点击");
 
             Bundle bundle = new Bundle();
-            bundle.putString("web_url","https://xw.qq.com/?f=qqcom");
+//            bundle.putString("web_url","https://xw.qq.com/?f=qqcom");
             startActivity(RouterPathApi.WebView.WEB_VIEW_BASE,bundle);
-//            mLiveData.setValue(0);
         }
     });
 }

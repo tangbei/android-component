@@ -35,4 +35,6 @@ public interface IBaseViewModel extends LifecycleObserver {
 
     void startActivity(@NonNull String path, Bundle bundle);
 
+    void startActivity(Class<?> clazz,Bundle bundle);
+
 }

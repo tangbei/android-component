@@ -1,5 +1,6 @@
 package com.tang.webview.interfaces;
 
+import android.content.Context;
 import android.webkit.WebView;
 
 /**
@@ -39,4 +40,12 @@ public interface BaseWebViewCallBack {
      * 页面加载出错
      */
     void onError();
+
+    /**
+     * js和native交互指令
+     * @param context 上下文对象
+     * @param cmd 指令
+     * @param params 内容参数
+     */
+    void exec(Context context, WebView webView, int level, String cmd,String params);
 }

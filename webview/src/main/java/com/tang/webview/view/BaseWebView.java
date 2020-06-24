@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 import com.tang.base.utils.LogUtil;
+import com.tang.webview.WebContent;
 import com.tang.webview.client.BaseWebViewClient;
 import com.tang.webview.interfaces.BaseWebViewCallBack;
 import com.tang.webview.interfaces.CallbackWrapperBase;
@@ -59,6 +60,10 @@ public class BaseWebView extends WebView {
         init(context);
     }
 
+    /**
+     * 初始化
+     * @param context
+     */
     private void init(Context context){
         this.mContext = context;
         WebDefaultSettingsManager.getInstance().toSetting(this);
@@ -68,14 +73,35 @@ public class BaseWebView extends WebView {
         //web和native交互
         if (null == mJsRemoteInterface){
             mJsRemoteInterface = new JsRemoteInterface(context);
+            mJsRemoteInterface.setAidlCommand(new JsRemoteInterface.AidlCommand() {
+                @Override
+                public void exec(Context context, String cmd, String params) {
+                    LogUtil.d(TAG,"cmd:"+cmd + ",params:" + params);
+                    if (null != mWebViewCallBack){
+                        mWebViewCallBack.exec(mContext, BaseWebView.this, mWebViewCallBack.getType(),cmd,params);
+                    }
+                }
+            });
         }
         setJavascriptInterface(mJsRemoteInterface);
     }
 
+    /**
+     * 注册回调
+     * @param callBack
+     */
     public void registerWebViewCallback(BaseWebViewCallBack callBack){
         this.mWebViewCallBack = callBack;
+        if (null != mWebViewClient){
+            mWebViewClient.setWebViewCallBack(callBack);
+        }
     }
 
+    /**
+     * 重写{@link ActionMode}
+     * @param callback
+     * @return
+     */
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback) {
         ViewParent parent = getParent();
@@ -85,6 +111,12 @@ public class BaseWebView extends WebView {
         return super.startActionMode(callback);
     }
 
+    /**
+     * 重写{@link ActionMode}
+     * @param callback
+     * @param type
+     * @return
+     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback, int type) {
@@ -95,6 +127,11 @@ public class BaseWebView extends WebView {
         return null;
     }
 
+    /**
+     * 重写{@link ActionMode.Callback}
+     * @param callback
+     * @return
+     */
     private ActionMode.Callback warpCallback(ActionMode.Callback callback){
         if (null != mCustomCallback){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -116,11 +153,26 @@ public class BaseWebView extends WebView {
      * js端调用方式 window.webview
      * @param remoteInterface 该类实现js要调用的方法，并实例化传递给webView
      */
-    @SuppressLint({"addJavascriptInterface","setJavascriptInterface"})
+    @SuppressLint({"AddJavascriptInterface","setJavascriptInterface"})
     public void setJavascriptInterface(JsRemoteInterface remoteInterface){
         addJavascriptInterface(remoteInterface,"webview");
     }
 
+    /**
+     * 设置html内容加载
+     */
+    public void setContent(String htmlContent){
+        try {
+            loadDataWithBaseURL(WebContent.CONTENT_SCHEME,htmlContent,"text/html","UTF-8",null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 加载url
+     * @param url 访问地址
+     */
     @Override
     public void loadUrl(String url) {
         super.loadUrl(url);
@@ -128,6 +180,11 @@ public class BaseWebView extends WebView {
         resetAllStateInternal(url);
     }
 
+    /**
+     * 加载url
+     * @param url 访问地址
+     * @param additionalHttpHeaders 地址添加的请求头
+     */
     @Override
     public void loadUrl(String url, Map<String, String> additionalHttpHeaders) {
         super.loadUrl(url, additionalHttpHeaders);
@@ -135,6 +192,10 @@ public class BaseWebView extends WebView {
         resetAllStateInternal(url);
     }
 
+    /**
+     * 重置状态
+     * @param url
+     */
     private void resetAllStateInternal(String url) {
         if (!TextUtils.isEmpty(url) && url.startsWith("javascript:")){
             return;
@@ -151,6 +212,9 @@ public class BaseWebView extends WebView {
         }
     }
 
+    /**
+     * 监听屏幕点击事件
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()){
@@ -163,6 +227,10 @@ public class BaseWebView extends WebView {
         return super.onTouchEvent(event);
     }
 
+    /**
+     * 加载js
+     * @param trigger
+     */
     public void loadJs(String trigger){
         if (!TextUtils.isEmpty(trigger)){
             //Android4.4之后通过evaluate调用js
@@ -179,6 +247,16 @@ public class BaseWebView extends WebView {
         loadJs(trigger);
     }
 
+    public void handleCallback(String json){
+        String trigger = "javascript:" + "dj.callback" + "(" + json + ")";
+        //Android4.4之后通过evaluate调用js
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            evaluateJavascript(trigger,null);
+        }else {
+            loadUrl(trigger);
+        }
+    }
+
     public void dispatchEvent(String name){
         Map<String,String> params = new HashMap<>(1);
         params.put("name",name);
@@ -189,5 +267,8 @@ public class BaseWebView extends WebView {
         loadJs("dj.dispatchEvent",params);
     }
 
-
+    @Override
+    public void goBack() {
+        super.goBack();
+    }
 }

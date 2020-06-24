@@ -9,7 +9,7 @@
             android:hardwareAccelerated="true"
             android:process=":webview"/>
 
-        <service android:name=".server.AIDLService">
+        <service android:name=".server.MainHandleRemoteService">
             <intent-filter>
                 <action android:name="com.tang.webview.action"/>
                 <category android:name="android.intent.category.DEFAULT"/>
