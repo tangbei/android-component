@@ -104,27 +104,27 @@ public abstract class BaseWebViewFragment extends Fragment implements BaseWebVie
     @Override
     public void onResume() {
         super.onResume();
-        mWebView.dispatchEvent("pageResume");
+        mWebView.dispatchEvent("pageResume",null);
         mLifeCycle.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mWebView.dispatchEvent("pagePause");
+        mWebView.dispatchEvent("pagePause",null);
         mLifeCycle.onPause();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mWebView.dispatchEvent("pageStop");
+        mWebView.dispatchEvent("pageStop",null);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mWebView.dispatchEvent("pageDestroy");
+        mWebView.dispatchEvent("pageDestroy",null);
         mLifeCycle.onDestroy();
     }
 

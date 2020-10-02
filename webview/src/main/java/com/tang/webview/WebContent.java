@@ -16,6 +16,8 @@ public class WebContent {
 
     public static final String CONTENT_SCHEME = "file:///android_asset/";
 
+    public static final String CONTENT_TEST_URL = "http://10.10.20.26:8000/jsbridge/aidl.html";
+
     /**
      * 正常跳转,进入{@link com.tang.webview.base.NormalWebViewFragment}
      */
@@ -47,10 +49,27 @@ public class WebContent {
      * web与native交互的callback
      */
     public static final String WEB2NATIVE_CALLBACK = "callback";
+
     /**
-     * native与web交互的callback
+     * native与web交互的回调参数
      */
-    public static final String NATIVE2WEB_CALLBACK = "callback_name";
+    public static final String NATIVE2WEB_CALLBACK = "callbackName";
+    public static final String NATIVE2WEB_ACTION = "action";
+    public static final String NATIVE2WEB_CONTENT = "content";
+
+    /**
+     * 指令集
+     */
+    public static class Instruct {
+        /**
+         * toast提示
+         */
+        public static final String TOAST = "toast";
+        /**
+         * 弹窗
+         */
+        public static final String DIALOG = "dialog";
+    }
 
     public static class ErrorCode {
         public static final int NO_METHOD = -1000;

@@ -44,7 +44,7 @@ public class WebViewActivity extends BaseActivity {
             if (!TextUtils.isEmpty(url)){
                 mWebViewFragment = NormalWebViewFragment.getInstance(url);
             }else {
-                mWebViewFragment = InterfaceWebViewFragment.newInstance(WebContent.CONTENT_SCHEME + "aidl.html");
+                mWebViewFragment = InterfaceWebViewFragment.newInstance(WebContent.CONTENT_TEST_URL);
             }
         }
         fragmentTransaction.replace(R.id.fragment,mWebViewFragment).commit();

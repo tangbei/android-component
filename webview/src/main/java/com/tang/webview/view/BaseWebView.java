@@ -247,8 +247,12 @@ public class BaseWebView extends WebView {
         loadJs(trigger);
     }
 
+    /**
+     * 回调js
+     * @param json
+     */
     public void handleCallback(String json){
-        String trigger = "javascript:" + "dj.callback" + "(" + json + ")";
+        String trigger = "javascript:" + "webNativeBridge.callback" + "(" + json + ")";
         //Android4.4之后通过evaluate调用js
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             evaluateJavascript(trigger,null);
@@ -257,14 +261,17 @@ public class BaseWebView extends WebView {
         }
     }
 
-    public void dispatchEvent(String name){
-        Map<String,String> params = new HashMap<>(1);
+    /**
+     * 自定义触发事件
+     * @param name
+     * @param params
+     */
+    public void dispatchEvent(String name,Map params){
+        if (null == params){
+            params = new HashMap<>(1);
+        }
         params.put("name",name);
-        loadJs("dj.dispatchEvent",params);
-    }
-
-    public void dispatchEvent(Map params){
-        loadJs("dj.dispatchEvent",params);
+        loadJs("webNativeBridge.dispatchEvent",params);
     }
 
     @Override

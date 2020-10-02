@@ -19,19 +19,27 @@
     </style>
 </head>
 <body style="height: 100%;">
+<div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppToast()">调用2: showToast</div>
+<div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppDialog()">调用: showDialog</div>
+<div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppDataProvider()">事件触发调用: appDataProvider</div>
+<div class="item" id="dispatchOnclick" style="font-size: 20px; color: #ffffff">事件触发调用: appDataProvider</div>
+<script src="js/webViewJavascriptBridge.js" charset="utf-8"></script>
 <script>
     function callAppToast() {
-        dj.post("showToast", {message: "this is action from html"});
+        webNativeBridge.toast("this is action from html");
     }
 
     function callAppDialog() {
-        dj.postWithCallback("showDialog",
-            {title: "Note", content: "This is web call native to show dialog." ,buttons:[{title:"confirm", id: "confirm"},{title:"cancel", id: "cancel"}]},function(paras) {
-            if (paras.id == 'confirm') {
-                dj.post("showToast", {message: "confirm"});
-            } else if (paras.id == 'cancel') {
-                dj.post("showToast", {message: "cancel"});
-            }
+        // dj.postWithCallback("dialog",
+        //     {title: "Note", content: "This is web call native to show dialog." ,buttons:[{title:"confirm", id: "confirm"},{title:"cancel", id: "cancel"}]},function(paras) {
+        //     if (paras.id == 'confirm') {
+        //         dj.post("showToast", {message: "confirm"});
+        //     } else if (paras.id == 'cancel') {
+        //         dj.post("showToast", {message: "cancel"});
+        //     }
+        // });
+        webNativeBridge.dialog("我是内容哦", function(params) {
+            webNativeBridge.toast("回调结果："+JSON.stringify(params));
         });
     }
 
@@ -40,10 +48,11 @@
             dj.post("showToast", {message: JSON.stringify(res)});
         });
     }
+
+    window.addEventListener('pagePause',function(event) {
+        webNativeBridge.toast("我是事件触发：");
+        // testDispatchEvent.innerText = "我是事件触发：";
+    });
 </script>
-<div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppToast()">调用: showToast</div>
-<div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppDialog()">调用: showDialog</div>
-<div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppDataProvider()">调用: appDataProvider</div>
-<script src="js/dj.js" charset="utf-8"></script>
 </body>
 </html>
