@@ -1,8 +1,3 @@
----
-
-
----
-
 <h1 id="component">component</h1>
 <h2 id="android组件化方案，采用mvvm-retrofit-okhttp-jdk8-databinding-androidx-arouter方式实现，采用比较流行的技术框架和方案进行整合，实现合理的开发架构，解决项目中的代码耦合，代码臃肿、保证多人开发的情况下，项目质量等问题。">android组件化方案，采用<code>mvvm</code> <code>retrofit</code> <code>okhttp</code> <code>jdk8</code> <code>dataBinding</code> <code>androidx</code> <code>ARouter</code>方式实现，采用比较流行的技术框架和方案进行整合，实现合理的开发架构，解决项目中的代码耦合，代码臃肿、保证多人开发的情况下，项目质量等问题。</h2>
 <h2 id="一、基本实现">一、基本实现</h2>
