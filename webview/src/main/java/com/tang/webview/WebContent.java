@@ -16,7 +16,9 @@ public class WebContent {
 
     public static final String CONTENT_SCHEME = "file:///android_asset/";
 
-    public static final String CONTENT_TEST_URL = "http://10.10.20.26:8000/jsbridge/aidl.html";
+//    public static final String CONTENT_TEST_URL = "http://192.168.2.186:8000/jsbridge/aidl.html";
+
+    public static final String CONTENT_TEST_URL = "file:///android_asset/aidl.html";
 
     /**
      * 正常跳转,进入{@link com.tang.webview.base.NormalWebViewFragment}

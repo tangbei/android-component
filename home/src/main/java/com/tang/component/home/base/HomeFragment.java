@@ -38,6 +38,8 @@ public class HomeFragment extends BaseFragment<ModuleHomeFragmentHomeBinding, Ho
     @Override
     protected void initData(Bundle savedInstanceState) {
 
+
+
         dataBinding.btnSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

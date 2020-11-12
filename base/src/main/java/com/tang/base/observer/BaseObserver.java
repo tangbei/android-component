@@ -48,13 +48,13 @@ public class BaseObserver<T> implements Observer<BaseResponse<T>> {
 
     @Override
     public void onError(Throwable e) {
-        if (e instanceof ExceptionHandle.ResponeThrowable){
+        if (e instanceof ExceptionHandle.ResponseThrowable){
             if (null != baseModel){
                 baseModel.onFailure(e);
             }
         }else {
             if (null != baseModel){
-                baseModel.onFailure(new ExceptionHandle.ResponeThrowable(e,ExceptionHandle.ERROR.UNKNOWN));
+                baseModel.onFailure(new ExceptionHandle.ResponseThrowable(e,ExceptionHandle.ERROR.UNKNOWN));
             }
         }
         LogUtil.d(TAG,"onError回调："+e.getMessage());

@@ -65,6 +65,7 @@ public class RemoteWebBinderPool {
             //拿到服务端的binder
             mBinderPool = IBinderPool.Stub.asInterface(service);
             try {
+                //为binder对象设置死亡代理
                 mBinderPool.asBinder().linkToDeath(mDeathRecipient,0);
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -80,12 +81,14 @@ public class RemoteWebBinderPool {
     };
 
     /**
+     * binder的代理对象
      * 通过{@link android.os.IBinder.DeathRecipient} 处理 {@link android.os.Binder}连接池死亡重联机制
      */
     private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {
             LogUtil.w("连接池失效");
+            //将设置的死亡代理标志清除
             mBinderPool.asBinder().unlinkToDeath(mDeathRecipient,0);
             mBinderPool = null;
             //重连

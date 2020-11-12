@@ -1,6 +1,8 @@
 package com.tang.component.home.base;
 
 import android.app.Application;
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tang.base.binding.command.BindingAction;
@@ -23,10 +25,12 @@ import java.util.List;
 public class HomeViewModel extends BaseViewModel<HomeModel> {
 
     private List<TestBean> list;
+    private Context mContext;
 
     public HomeViewModel(@NonNull Application application) {
         super(application,new HomeModel(application));
         LogUtil.w("我是home");
+        this.mContext = application.getApplicationContext();
     }
 
     @Override
@@ -55,10 +59,10 @@ public class HomeViewModel extends BaseViewModel<HomeModel> {
         @Override
         public void accept(Object o) throws Exception {
             LogUtil.e("我是ooo点击事件");
+
             ARouter.getInstance().build(RouterPathApi.Home.HOME_FIRST).navigation();
 //            startActivity(RouterPathApi.Home.HOME_FIRST,null);
         }
     };
-
 
 }

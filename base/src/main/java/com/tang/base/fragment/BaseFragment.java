@@ -110,6 +110,10 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
     protected abstract void initData(Bundle savedInstanceState);
 
 
+    private void registerContact(){
+//        registerForActivityResult();
+    }
+
     @Override
     public void onChanged(Object o) {
 
