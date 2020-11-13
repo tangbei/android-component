@@ -1,33 +1,11 @@
-apply plugin: 'com.android.library'
+apply from: "../module_library.gradle"
 
-android {
-    compileSdkVersion rootProject.ext.android['compileSdkVersion']
-    buildToolsVersion rootProject.ext.android['buildToolsVersion']
-
-    defaultConfig {
-        minSdkVersion rootProject.ext.android['minSdkVersion']
-        targetSdkVersion rootProject.ext.android['targetSdkVersion']
-        versionCode rootProject.ext.android['versionCode']
-        versionName rootProject.ext.android['versionName']
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'proguard-rules.pro'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled rootProject.ext.android['minifyEnabled']
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-}
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation rootProject.ext.dependencies['appcompat']
     api project(path: ':base')
+    api project(path: ':screenadapt')
 
     api rootProject.ext.dependencies['SmartRefreshLayout']
 

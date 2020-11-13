@@ -35,6 +35,12 @@
             binding:onClickDelayedCommand="@{homeViewModel.onClickCommand}"
             android:text="网络请求"/>
 
+        <TextView
+            android:id="@+id/tv_env"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="按钮"/>
     </FrameLayout>
 
 </layout>

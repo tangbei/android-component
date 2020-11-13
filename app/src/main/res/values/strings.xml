@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">component</string>
+
+    <string name="ENVIRONMENT_DEV">0</string>
+    <string name="ENVIRONMENT_UAT">1</string>
+    <string name="ENVIRONMENT_ONLINE">2</string>
 </resources>
