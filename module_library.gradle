@@ -37,14 +37,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         }
-        uat {
-            debuggable true
-            minifyEnabled rootProject.ext.android['minifyEnabled']
-            zipAlignEnabled rootProject.ext.android['zipAlignEnabled']
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-        }
         release {
             debuggable false
             minifyEnabled rootProject.ext.android['minifyEnabled']

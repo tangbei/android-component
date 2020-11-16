@@ -41,43 +41,16 @@ android {
 
     buildTypes {
         debug {
-            debuggable true
             minifyEnabled rootProject.ext.android['minifyEnabled']
             zipAlignEnabled rootProject.ext.android['zipAlignEnabled']
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-            applicationIdSuffix ".dev"//给包名添加后缀形成新的测试环境包名
-            resValue ("integer", "ENVIRONMENT", "0")//自定义环境变量
-            manifestPlaceholders = [
-                    app_name : rootProject.ext.android['app_name'] + "开发",
-//                    icon: "",
-            ]
-        }
-        uat {
-            debuggable true
-            minifyEnabled rootProject.ext.android['minifyEnabled']
-            zipAlignEnabled rootProject.ext.android['zipAlignEnabled']
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-            applicationIdSuffix ".uat"//给包名添加后缀形成新的测试环境包名
-            resValue ("integer", "ENVIRONMENT", "1")//自定义环境变量
-            manifestPlaceholders = [
-                    app_name : rootProject.ext.android['app_name'] + "测试",
-//                    icon: ""
-            ]
         }
         release {
-            debuggable false
             minifyEnabled rootProject.ext.android['minifyEnabled']
             zipAlignEnabled rootProject.ext.android['zipAlignEnabled']
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            resValue ("integer", "ENVIRONMENT", "2")//自定义环境变量
-            manifestPlaceholders = [
-                    app_name : rootProject.ext.android['app_name'],
-            ]
         }
     }
 
@@ -86,32 +59,32 @@ android {
         enabled rootProject.ext.android['dataBinding']
     }
 
-//    productFlavors {
-//        //开发环境
-//        develop {
-//            buildConfigField "Integer", "ENV_TYPE", "1"
-//            applicationId rootProject.ext.android['applicationId'] + ".develop"
-//            manifestPlaceholders = [
-//                    app_name : rootProject.ext.android['app_name'] + "开发",
-//            ]
-//        }
-//        //测试环境
-//        uat {
-//            buildConfigField "Integer", "ENV_TYPE", "2"
-//            applicationId rootProject.ext.android['applicationId'] + ".test"
-//            manifestPlaceholders = [
-//                    app_name : rootProject.ext.android['app_name'] + "测试",
-//            ]
-//        }
-//        //生产环境
-//        online {
-//            buildConfigField "Integer", "ENV_TYPE", "3"
-//            applicationId rootProject.ext.android['applicationId']
-//            manifestPlaceholders = [
-//                    app_name : rootProject.ext.android['app_name'],
-//            ]
-//        }
-//    }
+    productFlavors {
+        //开发环境
+        develop {
+            buildConfigField "Integer", "ENV_TYPE", "1"
+            applicationIdSuffix ".develop"
+            manifestPlaceholders = [
+                    app_name : rootProject.ext.android['app_name'] + "开发",
+            ]
+        }
+        //测试环境
+        uat {
+            buildConfigField "Integer", "ENV_TYPE", "2"
+            applicationIdSuffix ".uat"
+            manifestPlaceholders = [
+                    app_name : rootProject.ext.android['app_name'] + "测试",
+            ]
+        }
+        //生产环境
+        online {
+            buildConfigField "Integer", "ENV_TYPE", "3"
+            applicationId rootProject.ext.android['applicationId']
+            manifestPlaceholders = [
+                    app_name : rootProject.ext.android['app_name'],
+            ]
+        }
+    }
 }
 
 dependencies {

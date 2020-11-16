@@ -42,7 +42,8 @@ public class ComponentApplication extends Application {
         ActivityRouterManager.getInstance().init(this);
         //初始化网络请求框架
         CommonNetWorkApi.init(new NetWorkConfigImpl(this));
-        Constants.BUILD_ENV = getResources().getInteger(R.integer.ENVIRONMENT);
+//        Constants.BUILD_ENV = getResources().getInteger(R.integer.ENVIRONMENT);
+        Constants.BUILD_ENV = BuildConfig.ENV_TYPE;
 
     }
 }

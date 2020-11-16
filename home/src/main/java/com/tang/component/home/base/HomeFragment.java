@@ -35,7 +35,7 @@ public class HomeFragment extends BaseFragment<ModuleHomeFragmentHomeBinding, Ho
     @Override
     protected void initData(Bundle savedInstanceState) {
 
-        dataBinding.tvEnv.setText(Constants.BUILD_ENV == 0 ? "开发环境" : (Constants.BUILD_ENV == 1 ? "测试环境" : "线上环境"));
+        dataBinding.tvEnv.setText(Constants.BUILD_ENV == 1 ? "开发环境" : (Constants.BUILD_ENV == 2 ? "测试环境" : "线上环境"));
 
         dataBinding.btnSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
